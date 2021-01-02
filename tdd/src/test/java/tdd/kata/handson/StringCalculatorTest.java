@@ -17,7 +17,11 @@ public class StringCalculatorTest {
 	@Test
 	public void sumMustReturnSameNumberForNonEmptySingleValueString() {
 		StringCalculator calculator = new StringCalculator();
+		
 		int sum = calculator.add("10");
 		assertEquals(10, sum);
+		
+		sum = calculator.add("5");
+		assertEquals(5, sum);
 	}
 }
