@@ -2,7 +2,7 @@ package tdd.kata.handson;
 
 public class StringCalculator {
 
-	public void add(String string) {
-		
+	public int add(String string) {
+		return 0;
 	}
 }
