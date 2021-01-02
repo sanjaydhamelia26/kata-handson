@@ -10,7 +10,7 @@ public class StringCalculatorTest {
 	@Test
 	public void sumMustBeZeroForEmptyString() {
 		StringCalculator calculator = new StringCalculator();
-		int sum = calculator.add("1,2");
+		int sum = calculator.add("");
 		assertEquals(0, sum);
 	}
 }
