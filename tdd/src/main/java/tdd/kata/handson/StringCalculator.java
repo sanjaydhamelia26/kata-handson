@@ -1,5 +1,7 @@
 package tdd.kata.handson;
 
+import java.util.Arrays;
+
 public class StringCalculator {
 
 	public int add(String input) {
@@ -7,11 +9,8 @@ public class StringCalculator {
 			return 0;
 		}
 		
-		int sum = 0;
-		String[] inputArray = input.split(",");
-		for (String number : inputArray) {
-			sum += Integer.parseInt(number);
-		}
+		int sum = Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).sum();
+		
 		return sum;
 	}
 }
