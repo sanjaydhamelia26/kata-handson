@@ -29,7 +29,10 @@ public class StringCalculatorTest {
 	public void sumMustReturnAdditionOfGivenNumberInInputString() {
 		StringCalculator calculator = new StringCalculator();
 		
-		int sum = calculator.add("10, 5");
+		int sum = calculator.add("10,5");
 		assertEquals(15, sum);
+		
+		sum = calculator.add("1,4");
+		assertEquals(5, sum);
 	}
 }
