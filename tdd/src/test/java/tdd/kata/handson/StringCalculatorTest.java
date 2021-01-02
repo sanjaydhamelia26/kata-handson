@@ -4,7 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+
+@RunWith(JUnitParamsRunner.class)
 public class StringCalculatorTest {
 
 	private StringCalculator calculator;
@@ -24,21 +29,34 @@ public class StringCalculatorTest {
 		assertEquals(0, sum);
 	}
 	
+	
+	public Object[][] testDataFor_NonEmptySingleValueString() {
+		return new Object[][] {
+					//Input	 //expectedSum
+					{"1",	 	1},
+					{"2",		2}
+		};
+	}
+
 	@Test
-	public void sumMustReturnSameNumberForNonEmptySingleValueString() {
-		int sum = calculator.add("10");
-		assertEquals(10, sum);
-		
-		sum = calculator.add("5");
-		assertEquals(5, sum);
+	@Parameters(method = "testDataFor_NonEmptySingleValueString")
+	public void sumMustReturnSameNumberForNonEmptySingleValueString(String input, int expectedSum) {
+		int sum = calculator.add(input);
+		assertEquals(expectedSum, sum);
+	}
+	
+	public Object[][] testDataFor_CommaSeperatedString() {
+		return new Object[][] {
+					//Input			//expectedSum
+					{"10,5",	 	 15},
+					{"1,2,3,4,5",	 15}
+		};
 	}
 	
 	@Test
-	public void sumMustReturnAdditionOfGivenNumberInInputString() {
-		int sum = calculator.add("10,5");
-		assertEquals(15, sum);
-			
-		sum = calculator.add("1,2,3,4,5");
-		assertEquals(15, sum);
+	@Parameters(method = "testDataFor_CommaSeperatedString")
+	public void sumMustReturnAdditionOfGivenNumberInInputString(String input, int expectedSum) {
+		int sum = calculator.add(input);
+		assertEquals(expectedSum, sum);
 	}
 }
