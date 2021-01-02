@@ -49,6 +49,7 @@ public class StringCalculatorTest {
 		return new Object[][] {
 					//Input			//expectedSum
 					{"10,5",	 	 15},
+					// below input for scenarios 2: Allow the Add method to handle an unknown amount of numbers, which was taken in considering by code refactor
 					{"1,2,3,4,5",	 15}
 		};
 	}
@@ -58,5 +59,11 @@ public class StringCalculatorTest {
 	public void sumMustReturnAdditionOfGivenNumberInInputString(String input, int expectedSum) {
 		int sum = calculator.add(input);
 		assertEquals(expectedSum, sum);
+	}
+	
+	@Test
+	public void sumMustBeCalculatedForTheInputContainsCommaAndNewLineAsADelimeter() {
+		int sum = calculator.add("1\n2,3");
+		assertEquals(6, sum);
 	}
 }
