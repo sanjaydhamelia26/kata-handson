@@ -24,4 +24,12 @@ public class StringCalculatorTest {
 		sum = calculator.add("5");
 		assertEquals(5, sum);
 	}
+	
+	@Test
+	public void sumMustReturnAdditionOfGivenNumberInInputString() {
+		StringCalculator calculator = new StringCalculator();
+		
+		int sum = calculator.add("10, 5");
+		assertEquals(15, sum);
+	}
 }
