@@ -61,9 +61,20 @@ public class StringCalculatorTest {
 		assertEquals(expectedSum, sum);
 	}
 	
+	public Object[][] testDataFor_CommaAndNewLineSeperatedString() {
+		return new Object[][] {
+			//Input			//expectedSum
+			{"1\n2,3",	 	 6},
+			// below input for scenarios 2: Allow the Add method to handle an unknown amount of numbers, which was taken in considering by code refactor
+			{"1,2,3,4\n5",	 15}
+		};
+	}	
+
 	@Test
-	public void sumMustBeCalculatedForTheInputContainsCommaAndNewLineAsADelimeter() {
-		int sum = calculator.add("1\n2,3");
-		assertEquals(6, sum);
+	@Parameters(method = "testDataFor_CommaAndNewLineSeperatedString")
+	public void sumMustBeCalculatedForTheInputContainsCommaAndNewLineAsADelimeter(String input, int expectedSum) {
+		int sum = calculator.add(input);
+		assertEquals(expectedSum, sum);
 	}
+	
 }
