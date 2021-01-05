@@ -77,4 +77,9 @@ public class StringCalculatorTest {
 		assertEquals(expectedSum, sum);
 	}
 	
+	@Test
+	public void sumMustBeCalculatedWhenInputHavingDelimeterDefinitaionItSelf() {
+		int sum = calculator.add("//;\n1;2");
+		assertEquals(3, sum);
+	}
 }
