@@ -91,4 +91,10 @@ public class StringCalculatorTest {
 		int sum = calculator.add(input);
 		assertEquals(expectedSum, sum);
 	}
+	
+	@Test
+	public void inputWithNegativeNumberMustThrowAnExceptionSayingNumberIsNegative() {
+		int sum = calculator.add("1,-2");
+		assertEquals(-1,sum);
+	}
 }
