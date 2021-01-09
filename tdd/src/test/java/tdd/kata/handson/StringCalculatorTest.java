@@ -102,5 +102,14 @@ public class StringCalculatorTest {
 			assertEquals("Negative Number: -2 not allowed", e.getMessage());
 			assertTrue(true);
 		}
+		
+		
+		try {
+			calculator.add("1,-2,-3,-4");
+			assertTrue(false);
+		} catch (Exception e) {
+			assertEquals("Negative Number: -2,-3,-4 not allowed", e.getMessage());
+			assertTrue(true);
+		}
 	}
 }
