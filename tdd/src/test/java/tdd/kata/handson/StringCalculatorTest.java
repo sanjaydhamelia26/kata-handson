@@ -77,9 +77,18 @@ public class StringCalculatorTest {
 		assertEquals(expectedSum, sum);
 	}
 	
+	public Object[][] testDataFor_InputContainsDelimetersItSelf() {
+		return new Object[][] {
+			//Input			//expectedSum
+			{"//;\n1;2",	 3},
+			{"//,\n1,2,3",	 6}
+		};
+	}
+	
 	@Test
-	public void sumMustBeCalculatedWhenInputHavingDelimeterDefinitaionItSelf() {
-		int sum = calculator.add("//;\n1;2");
-		assertEquals(3, sum);
+	@Parameters(method = "testDataFor_InputContainsDelimetersItSelf")
+	public void sumMustBeCalculatedWhenInputHavingDelimeterDefinitaionItSelf(String input, int expectedSum) {
+		int sum = calculator.add(input);
+		assertEquals(expectedSum, sum);
 	}
 }
