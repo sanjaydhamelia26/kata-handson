@@ -1,6 +1,7 @@
 package tdd.kata.handson;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -94,7 +95,11 @@ public class StringCalculatorTest {
 	
 	@Test
 	public void inputWithNegativeNumberMustThrowAnExceptionSayingNumberIsNegative() {
-		int sum = calculator.add("1,-2");
-		assertEquals(-1,sum);
+		try {
+			calculator.add("1,-2");
+			assertTrue(false);
+		} catch (Exception e) {
+			assertTrue(true);
+		}
 	}
 }
