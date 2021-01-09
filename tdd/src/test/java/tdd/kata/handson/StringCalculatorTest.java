@@ -99,6 +99,7 @@ public class StringCalculatorTest {
 			calculator.add("1,-2");
 			assertTrue(false);
 		} catch (Exception e) {
+			assertEquals("Negative Number: -2 not allowed", e.getMessage());
 			assertTrue(true);
 		}
 	}
