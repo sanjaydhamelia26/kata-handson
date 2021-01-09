@@ -1,10 +1,11 @@
 package tdd.kata.handson;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import junitparams.JUnitParamsRunner;
@@ -14,6 +15,9 @@ import junitparams.Parameters;
 public class StringCalculatorTest {
 
 	private StringCalculator calculator;
+
+	@Rule 
+	public ExpectedException exception = ExpectedException.none();
 	
 	/**
 	 * Setup method block will be called before running of every test case.
@@ -93,23 +97,19 @@ public class StringCalculatorTest {
 		assertEquals(expectedSum, sum);
 	}
 	
+	public Object[][] testDataFor_NegativeNumberMustThrowAnException() {
+		return new Object[][] {
+			//Input			//expectedMessage
+			{"1,-2",	 	 "Negative Number: -2 not allowed"},
+			{"1,-2,-3,-4",	 "Negative Number: -2,-3,-4 not allowed"}
+		};
+	}
+	
 	@Test
-	public void inputWithNegativeNumberMustThrowAnExceptionSayingNumberIsNegative() {
-		try {
-			calculator.add("1,-2");
-			assertTrue(false);
-		} catch (Exception e) {
-			assertEquals("Negative Number: -2 not allowed", e.getMessage());
-			assertTrue(true);
-		}
-		
-		
-		try {
-			calculator.add("1,-2,-3,-4");
-			assertTrue(false);
-		} catch (Exception e) {
-			assertEquals("Negative Number: -2,-3,-4 not allowed", e.getMessage());
-			assertTrue(true);
-		}
+	@Parameters(method = "testDataFor_NegativeNumberMustThrowAnException")
+	public void inputWithNegativeNumberMustThrowAnExceptionSayingNumberIsNegative(String input, String exceptionMessage) {
+		exception.expect(IllegalArgumentException.class);
+		calculator.add("1,-2");
+		exception.expectMessage(exceptionMessage);
 	}
 }
