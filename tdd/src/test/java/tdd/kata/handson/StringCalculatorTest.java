@@ -112,4 +112,10 @@ public class StringCalculatorTest {
 		calculator.add("1,-2");
 		exception.expectMessage(exceptionMessage);
 	}
+	
+	@Test
+	public void inputGreaterThan1000MustBeIgnored() {
+		int sum = calculator.add("1001,2");
+		assertEquals(2, sum);
+	}
 }
