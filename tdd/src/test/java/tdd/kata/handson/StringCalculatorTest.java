@@ -113,9 +113,18 @@ public class StringCalculatorTest {
 		exception.expectMessage(exceptionMessage);
 	}
 	
+	public Object[][] testDataFor_inputGreaterThan1000MustBeIgnored() {
+		return new Object[][] {
+			//Input			//expectedSum
+			{"1001,2",	 	 "2"},
+			{"1000,2,3,4",	 "9"}
+		};
+	}
+	
 	@Test
-	public void inputGreaterThan1000MustBeIgnored() {
-		int sum = calculator.add("1001,2");
-		assertEquals(2, sum);
+	@Parameters(method = "testDataFor_inputGreaterThan1000MustBeIgnored")
+	public void inputGreaterThan1000MustBeIgnored(String input, int expectedSum) {
+		int sum = calculator.add(input);
+		assertEquals(expectedSum, sum);
 	}
 }
