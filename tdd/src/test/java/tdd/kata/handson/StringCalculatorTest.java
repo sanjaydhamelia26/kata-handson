@@ -127,4 +127,10 @@ public class StringCalculatorTest {
 		int sum = calculator.add(input);
 		assertEquals(expectedSum, sum);
 	}
+	
+	@Test
+	public void sumMustBeCalculatedForMultiLengthDelimeter() {
+		int sum = calculator.add("//[***]\n1***2***3");
+		assertEquals(6, sum);
+	}
 }
