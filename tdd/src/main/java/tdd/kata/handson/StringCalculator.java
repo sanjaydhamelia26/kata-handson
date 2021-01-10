@@ -13,7 +13,7 @@ public class StringCalculator {
 		
 		String actulaInput = decideInputString(input);
 		String splitPattern = decideSplitPattern(input);
-		
+				
 		List<Integer> inputNumbers = Arrays.stream(actulaInput.split(splitPattern))
 										.map(Integer::parseInt).collect(Collectors.toList());
 		
@@ -43,11 +43,16 @@ public class StringCalculator {
 		String splitPattern = ",|\\n";
 		if (input.startsWith("//")) {
 			int indexOf = input.indexOf("\n");
-			String substring = input.substring(0, indexOf);
-			splitPattern = String.valueOf(substring.charAt(substring.length()-1));
+			String delimeter = identifyDelimeter(input, indexOf);
+			String multiDelimeterPattern = "\\Q"+delimeter+"\\E";
+			splitPattern = multiDelimeterPattern;
 		}
 		
 		return splitPattern;
+	}
+
+	private String identifyDelimeter(String input, int indexOf) {
+		return input.substring(0, indexOf).replace("[", "").replace("]", "").replace("//", "");
 	}
 	
 	public String decideInputString(String input) {
