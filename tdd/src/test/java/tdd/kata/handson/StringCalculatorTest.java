@@ -158,9 +158,18 @@ public class StringCalculatorTest {
 		assertEquals(expectedSum, sum);
 	}
 	
+	public Object[][] testDataFor_multipleDelimeterWithMultipleOccurencesOfSameDelimeter() {
+		return new Object[][] {
+			//Input						//expectedSum
+			{"//[***][%%%]\n1***2%%%3",	 	 "6"},
+			{"//[###][@@@]\n1@@@2###3",	 	 "6"}
+		};
+	}
+	
 	@Test
-	public void sumMustBeCalculatedForInputHavingMultipleDelimetersWithMutipleOccurencesOfSameDelimeter() {
-		int sum = calculator.add("//[***][%%%]\n1***2%%%3");
-		assertEquals(6, sum);
+	@Parameters(method = "testDataFor_multipleDelimeterWithMultipleOccurencesOfSameDelimeter")
+	public void sumMustBeCalculatedForInputHavingMultipleDelimetersWithMutipleOccurencesOfSameDelimeter(String input, int expectedSum) {
+		int sum = calculator.add(input);
+		assertEquals(expectedSum, sum);
 	}
 }
