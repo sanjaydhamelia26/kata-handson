@@ -123,7 +123,7 @@ public class StringCalculatorTest {
 	
 	@Test
 	@Parameters(method = "testDataFor_inputGreaterThan1000MustBeIgnored")
-	public void inputGreaterThan1000MustBeIgnored(String input, int expectedSum) {
+	public void inputGreaterThan1000MustBeIgnoredWhileAddition(String input, int expectedSum) {
 		int sum = calculator.add(input);
 		assertEquals(expectedSum, sum);
 	}
@@ -138,7 +138,7 @@ public class StringCalculatorTest {
 	
 	@Test
 	@Parameters(method = "testDataFor_multiLengthDelimeter")
-	public void sumMustBeCalculatedForMultiLengthDelimeter(String input, int expectedSum) {
+	public void sumMustBeCalculatedForInputHavingMultiLengthDelimeter(String input, int expectedSum) {
 		int sum = calculator.add(input);
 		assertEquals(expectedSum, sum);
 	}
@@ -153,8 +153,14 @@ public class StringCalculatorTest {
 	
 	@Test
 	@Parameters(method = "testDataFor_multipleDelimeter")
-	public void sumMustBeCalculatedForMultipleDelimeters(String input, int expectedSum) {
+	public void sumMustBeCalculatedForInputHavingMultipleDelimeters(String input, int expectedSum) {
 		int sum = calculator.add(input);
 		assertEquals(expectedSum, sum);
+	}
+	
+	@Test
+	public void sumMustBeCalculatedForInputHavingMultipleDelimetersWithMutipleOccurencesOfSameDelimeter() {
+		int sum = calculator.add("//[***][%%%]\n1***2%%%3");
+		assertEquals(6, sum);
 	}
 }
